@@ -1,0 +1,59 @@
+group 'com.zainon.hyperpay_flutte_plugin'
+version '1.0'
+
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.3.0'
+    }
+}
+
+rootProject.allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        flatDir {
+            dirs project(':hyperpay_flutte_plugin').file('libs')
+        }
+    }
+}
+
+apply plugin: 'com.android.library'
+
+android {
+    if (project.android.hasProperty("namespace")) {
+        namespace 'com.zainon.hyperpay_flutte_plugin'
+    }
+
+    compileSdkVersion 33
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        minSdkVersion 21
+    }
+
+}
+
+
+dependencies {
+    implementation(name: "oppwa.mobile-5.1.0-release", ext: 'aar')
+    debugImplementation(name: "ipworks3ds_sdk", ext: 'aar')
+    releaseImplementation(name: "ipworks3ds_sdk_deploy", ext: 'aar')
+    implementation 'androidx.appcompat:appcompat:1.4.2'
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    implementation 'androidx.browser:browser:1.4.0'
+    implementation 'androidx.fragment:fragment-ktx:1.4.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.webkit:webkit:1.4.0'
+    implementation 'com.google.android.material:material:1.6.1'
+    implementation 'com.google.code.gson:gson:2.8.9'
+    implementation 'androidx.databinding:viewbinding:7.1.2'
+}
